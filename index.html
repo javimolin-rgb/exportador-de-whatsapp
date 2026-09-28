@@ -8,210 +8,88 @@
 <title>Recortar conversación de WhatsApp</title>
 <style>
 * { box-sizing: border-box; }
-
 body {
-  margin: 0;
-  background: #f3f7f6;
-  color: #172b2a;
+  margin: 0; background: #f3f7f6; color: #172b2a;
   font-family: system-ui, -apple-system, sans-serif;
-  font-size: 16px;
 }
-
-header {
-  background: #075e54;
-  color: white;
-  padding: 24px 18px;
-}
-
-header h1 {
-  font-size: 25px;
-  margin: 0 0 8px;
-}
-
+header { background: #075e54; color: white; padding: 22px 16px; }
+header h1 { font-size: 24px; margin: 0 0 8px; }
 header p { margin: 0; }
-
-main {
-  width: min(760px, 100%);
-  margin: auto;
-  padding: 14px;
-}
-
+main { max-width: 760px; margin: auto; padding: 14px; }
 .card {
-  background: white;
-  border: 1px solid #dce7e4;
-  border-radius: 16px;
-  padding: 18px;
-  margin-bottom: 14px;
+  background: white; border: 1px solid #dce7e4;
+  border-radius: 15px; padding: 17px; margin-bottom: 14px;
 }
-
-h2 {
-  font-size: 19px;
-  margin: 0 0 12px;
-}
-
-p {
-  color: #60716f;
-  line-height: 1.5;
-}
-
-label {
-  display: block;
-  font-weight: 650;
-  margin: 12px 0 7px;
-}
-
+h2 { font-size: 19px; margin: 0 0 12px; }
+p { color: #60716f; line-height: 1.5; }
+label { display: block; font-weight: 650; margin: 12px 0 7px; }
 textarea, input[type=file] {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #bdcfca;
-  border-radius: 10px;
-  background: white;
-  font: inherit;
+  width: 100%; padding: 12px; border: 1px solid #bdcfca;
+  border-radius: 10px; background: white; font: inherit;
 }
-
-textarea {
-  min-height: 100px;
-  resize: vertical;
-}
-
-input[type=file] {
-  min-height: 48px;
-}
-
+textarea { min-height: 100px; resize: vertical; }
 .check {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 12px;
-  background: #f0f8f5;
-  border-radius: 10px;
+  display: flex; gap: 10px; align-items: flex-start;
+  background: #f0f8f5; padding: 12px; border-radius: 10px;
   margin: 12px 0;
-  font-weight: 500;
 }
-
-.check input {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-  accent-color: #128c7e;
-  margin-top: 2px;
-}
-
+.check input { width: 20px; height: 20px; accent-color: #128c7e; }
 .drop {
-  border: 2px dashed #8bc9bb;
-  background: #f5fbf9;
-  border-radius: 12px;
-  padding: 18px;
-  text-align: center;
+  border: 2px dashed #8bc9bb; background: #f5fbf9;
+  border-radius: 12px; padding: 16px; text-align: center;
 }
-
-.drop strong {
-  display: block;
-  color: #075e54;
-  margin-bottom: 8px;
-}
-
+.drop strong { display: block; color: #075e54; margin-bottom: 8px; }
 button {
-  font: inherit;
-  font-weight: 700;
-  min-height: 48px;
-  border: 0;
-  border-radius: 11px;
-  padding: 12px 16px;
-  cursor: pointer;
+  width: 100%; min-height: 48px; border: 0;
+  border-radius: 11px; padding: 12px;
+  font: inherit; font-weight: 700; cursor: pointer;
 }
-
-.primary {
-  background: #128c7e;
-  color: white;
-  width: 100%;
-  margin-top: 16px;
-}
-
-button:disabled {
-  opacity: .5;
-  cursor: wait;
-}
-
+.primary { background: #128c7e; color: white; margin-top: 14px; }
+button:disabled { opacity: .45; cursor: not-allowed; }
 .preview {
-  max-height: 350px;
-  overflow: auto;
-  border: 1px solid #dce7e4;
-  border-radius: 10px;
-  padding: 10px;
-  background: #f7faf9;
+  max-height: 380px; overflow: auto; background: #f7faf9;
+  border: 1px solid #dce7e4; border-radius: 10px; padding: 10px;
 }
-
 .message {
-  padding: 10px;
-  border-bottom: 1px solid #e6eeeb;
-  overflow-wrap: anywhere;
-  white-space: pre-wrap;
+  padding: 10px; border-bottom: 1px solid #e6eeeb;
+  overflow-wrap: anywhere; white-space: pre-wrap;
   font-size: 14px;
 }
-
 .message:last-child { border: 0; }
-
-.message .number {
-  color: #075e54;
-  font-weight: 750;
-  display: block;
-  margin-bottom: 4px;
-}
-
+.number { display: block; color: #075e54; font-weight: 750; }
 .pill {
-  display: inline-block;
-  background: #e9f7f3;
-  color: #075e54;
-  border-radius: 999px;
-  padding: 5px 10px;
-  font-size: 13px;
-  margin: 4px 4px 4px 0;
+  display: inline-block; background: #e9f7f3; color: #075e54;
+  border-radius: 999px; padding: 5px 10px;
+  font-size: 13px; margin: 4px;
 }
-
-.notice {
-  background: #f0f8f5;
-  border: 1px solid #cde9df;
-  border-radius: 10px;
-  padding: 12px;
-  font-size: 14px;
-  color: #385a51;
-  margin-bottom: 20px;
-}
-
-.status {
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-  margin-top: 12px;
-  color: #075e54;
-  font-weight: 600;
-}
-
+.status { white-space: pre-wrap; margin-top: 12px; font-weight: 600; }
 .error { color: #b42318; }
+.success { color: #087e63; }
+.notice {
+  background: #f0f8f5; border: 1px solid #cde9df;
+  border-radius: 10px; padding: 12px; font-size: 14px;
+  color: #385a51; margin-bottom: 20px;
+}
 .hidden { display: none; }
-
 @media(max-width:480px) {
-  header { padding: 20px 16px; }
   header h1 { font-size: 22px; }
   main { padding: 10px; }
-  .card { padding: 15px; }
+  .card { padding: 14px; }
   textarea { font-size: 16px; }
 }
 </style>
 </head>
-
 <body>
 
 <header>
   <h1>Recortar conversación de WhatsApp</h1>
-  <p>Pega los mensajes que marcan el inicio y el final. El sistema encontrará el fragmento automáticamente.</p>
+  <p>Selecciona exactamente qué parte de tu conversación quieres conservar.</p>
 </header>
 
 <main>
-
 <section class="card">
-  <h2>1. Selecciona tu archivo ZIP</h2>
-  <p>Selecciona el archivo exportado desde WhatsApp.</p>
+  <h2>1. Selecciona el ZIP</h2>
+  <p>Sube el archivo que exportaste desde WhatsApp.</p>
   <div class="drop">
     <strong>Seleccionar archivo ZIP</strong>
     <input id="file" type="file" accept=".zip,application/zip">
@@ -220,71 +98,62 @@ button:disabled {
 </section>
 
 <section id="rangeCard" class="card hidden">
-  <h2>2. Define el inicio y el final</h2>
+  <h2>2. Selecciona el fragmento</h2>
   <p>
-    Copia y pega un mensaje completo o una parte de él.
-    El sistema lo buscará en la conversación.
+    Pega el texto de los mensajes que delimitan el fragmento.
+    Puedes pegar el mensaje completo o una parte suficientemente
+    específica para identificarlo.
   </p>
 
-  <label for="startText">Mensaje desde el que comenzar</label>
+  <label for="startText">Mensaje inicial</label>
   <textarea id="startText"
-    placeholder="Pega aquí el mensaje inicial..."></textarea>
+    placeholder="Pega aquí el mensaje desde el que quieres comenzar..."></textarea>
 
   <label class="check">
     <input type="checkbox" id="fromBeginning">
-    <span>
-      <strong>Desde el inicio</strong><br>
-      Incluir la conversación desde el primer mensaje.
-    </span>
+    <span><strong>Desde el inicio</strong><br>
+    Comenzar desde el primer mensaje.</span>
   </label>
 
   <hr style="border:0;border-top:1px solid #dce7e4;margin:20px 0">
 
-  <label for="endText">Mensaje hasta el que guardar</label>
+  <label for="endText">Mensaje final</label>
   <textarea id="endText"
-    placeholder="Pega aquí el mensaje final..."></textarea>
+    placeholder="Pega aquí el último mensaje que quieres incluir..."></textarea>
 
   <label class="check">
     <input type="checkbox" id="toEnd">
-    <span>
-      <strong>Hasta el final</strong><br>
-      Incluir la conversación hasta el último mensaje.
-    </span>
+    <span><strong>Hasta el final</strong><br>
+    Incluir todos los mensajes hasta el último.</span>
   </label>
 
   <div id="counts"></div>
-  <div id="matchStatus" class="status"></div>
+  <div id="matchStatus" class="status" aria-live="polite"></div>
 </section>
 
 <section id="previewCard" class="card hidden">
-  <h2>3. Vista previa del fragmento</h2>
+  <h2>3. Comprueba el fragmento</h2>
   <div id="preview" class="preview"></div>
-  <p>Se muestran hasta 10 mensajes como muestra.</p>
+  <p>Vista previa de los primeros y últimos mensajes del rango.</p>
 </section>
 
 <section id="exportCard" class="card hidden">
-  <h2>4. Generar nuevo ZIP</h2>
-  <p>
-    Se conservará el texto del rango seleccionado y
-    los archivos multimedia identificados.
-  </p>
+  <h2>4. Exportar</h2>
+  <p>Se creará un ZIP con el texto seleccionado y los archivos multimedia que puedan identificarse.</p>
   <button id="make" class="primary" disabled>
     Crear y descargar ZIP
   </button>
-  <div id="status" class="status" role="status"
-       aria-live="polite"></div>
+  <div id="status" class="status" role="status" aria-live="polite"></div>
 </section>
 
 <div class="notice">
-  <strong>Privacidad:</strong> el archivo se procesa en tu navegador.
-  No se envía a ningún servidor. Necesitas Internet para cargar
-  la librería ZIP. Mantén la página abierta durante el proceso.
+  El procesamiento se realiza en tu navegador. No se envía tu
+  conversación a ningún servidor. Necesitas conexión a Internet
+  para cargar la librería ZIP. No cierres la página durante la exportación.
 </div>
-
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
-
 <script>
 (() => {
 "use strict";
@@ -298,38 +167,55 @@ let messages = [];
 let archiveFiles = [];
 let selected = null;
 
-// Formatos habituales de fecha de exportaciones de WhatsApp.
-const patterns = [
-  /^\u200e?\[?(\d{1,4}[./-]\d{1,2}[./-]\d{2,4}),?\s+(\d{1,2}:\d{2}(?::\d{2})?(?:\s?[ap]\.?\s?m\.?)?)\]?\s*[-–]\s*(.*?):\s/iu,
-  /^\u200e?(\d{1,4}[./-]\d{1,2}[./-]\d{2,4}),?\s+(\d{1,2}:\d{2}(?::\d{2})?(?:\s?[ap]\.?\s?m\.?)?)\s+-\s+(.*?):\s/iu,
-  /^\u200e?\[(\d{1,2}\/\d{1,2}\/\d{2,4}),\s*(\d{1,2}:\d{2}(?::\d{2})?(?:\s?[ap]\.?\s?m\.?)?)\]\s*(.*?):\s/iu
+/*
+  Detecta el comienzo de un mensaje por su fecha y hora.
+  Admite exportaciones habituales de Android y iPhone,
+  con o sin corchetes y segundos.
+*/
+const datePatterns = [
+  /^\u200e?\[?\d{1,4}[./-]\d{1,2}[./-]\d{2,4},?\s+\d{1,2}:\d{2}(?::\d{2})?(?:\s?[ap]\.?\s?m\.?)?\]?\s*(?:-\s*)?/iu,
+  /^\u200e?\[?\d{1,4}[./-]\d{1,2}[./-]\d{2,4}\s*,\s*\d{1,2}:\d{2}(?::\d{2})?(?:\s?[ap]\.?\s?m\.?)?\]?\s*(?:-\s*)?/iu
 ];
 
-function getHeader(line) {
-  for (const pattern of patterns) {
+function getDatePrefix(line) {
+  for (const pattern of datePatterns) {
     const match = line.match(pattern);
-    if (match) return match;
+    if (match) return match[0];
   }
   return null;
 }
 
-function isHeader(line) {
-  return getHeader(line) !== null;
-}
-
 function parseChat(text) {
-  const rows = text.replace(/^\uFEFF/, "").split(/\r\n|\n|\r/);
+  const lines = text.replace(/^\uFEFF/, "").split(/\r\n|\n|\r/);
   const result = [];
   let current = null;
 
-  for (const line of rows) {
-    if (isHeader(line)) {
+  for (const line of lines) {
+    const prefix = getDatePrefix(line);
+
+    if (prefix !== null) {
       if (current) result.push(current);
-      current = { text: line, header: line };
+
+      const remainder = line.slice(prefix.length);
+      const senderMatch = remainder.match(/^([^:\n]{1,100}):\s?/);
+
+      current = {
+        text: line,
+        body: senderMatch
+          ? remainder.slice(senderMatch[0].length)
+          : remainder,
+        firstLine: line
+      };
     } else if (current) {
       current.text += "\n" + line;
+      current.body += "\n" + line;
     } else if (line.trim()) {
-      current = { text: line, header: line };
+      // Texto anterior al primer encabezado, si existe.
+      current = {
+        text: line,
+        body: line,
+        firstLine: line
+      };
     }
   }
 
@@ -337,10 +223,13 @@ function parseChat(text) {
   return result;
 }
 
-// Normaliza espacios, caracteres invisibles y mayúsculas.
-// Permite comparar texto pegado desde distintas aplicaciones.
-function normalize(text) {
-  return text
+/*
+  Normalización conservadora:
+  elimina diferencias de espacios y mayúsculas,
+  pero conserva letras, números y puntuación.
+*/
+function normalize(value) {
+  return value
     .normalize("NFC")
     .replace(/[\u200e\u200f\u202a-\u202e\u2066-\u2069]/g, "")
     .replace(/\u00a0/g, " ")
@@ -349,125 +238,135 @@ function normalize(text) {
     .toLocaleLowerCase();
 }
 
-// Extrae el cuerpo de un mensaje, sin fecha ni remitente.
-function getBody(message) {
-  const lines = message.text.split("\n");
-  const match = getHeader(lines[0]);
-
-  if (!match) return message.text;
-
-  const firstLine = lines[0].replace(patterns.find(p => p.test(lines[0])), "");
-  return [firstLine, ...lines.slice(1)].join("\n");
-}
-
-// Busca el mensaje pegado dentro de cada mensaje exportado.
-// También acepta que se pegue la línea con fecha y remitente.
-function findBoundary(pasted, direction) {
+/*
+  Solo se acepta una coincidencia única.
+  Si el texto pegado aparece en varios mensajes,
+  se exige que el usuario aporte más texto.
+*/
+function findMessage(pasted) {
   const needle = normalize(pasted);
-  if (!needle) return -1;
+  if (!needle) return { index: -1, matches: [] };
 
-  const indices = [];
+  const matches = [];
 
-  for (let i = 0; i < messages.length; i++) {
-    const raw = normalize(messages[i].text);
-    const body = normalize(getBody(messages[i]));
+  messages.forEach((message, index) => {
+    const full = normalize(message.text);
+    const body = normalize(message.body);
 
-    if (raw.includes(needle) || body.includes(needle)) {
-      indices.push(i);
+    if (full.includes(needle) || body.includes(needle)) {
+      matches.push(index);
     }
+  });
+
+  if (matches.length === 1) {
+    return { index: matches[0], matches };
   }
 
-  if (!indices.length) return -1;
-
-  // Inicio: primera coincidencia.
-  // Final: última coincidencia, útil si el texto está repetido.
-  return direction === "start"
-    ? indices[0]
-    : indices[indices.length - 1];
+  return { index: -1, matches };
 }
 
-function esc(text) {
-  return text.replace(/[&<>"']/g, c => ({
+function escapeHTML(value) {
+  return value.replace(/[&<>"']/g, char => ({
     "&": "&amp;",
     "<": "&lt;",
     ">": "&gt;",
     '"': "&quot;",
     "'": "&#39;"
-  }[c]));
+  }[char]));
 }
 
 function resolveRange() {
   if (!messages.length) return null;
 
-  const fromBeginning = $("fromBeginning").checked;
-  const toEnd = $("toEnd").checked;
-
-  const start = fromBeginning
+  const start = $("fromBeginning").checked
     ? 0
-    : findBoundary($("startText").value, "start");
+    : findMessage($("startText").value).index;
 
-  const end = toEnd
+  const end = $("toEnd").checked
     ? messages.length - 1
-    : findBoundary($("endText").value, "end");
+    : findMessage($("endText").value).index;
 
-  if (start < 0 || end < 0) return null;
-  if (start > end) return null;
+  if (start < 0 || end < 0 || start > end) return null;
 
   return { start, end };
+}
+
+function boundaryStatus(text, isStart, useExtreme) {
+  if (useExtreme) {
+    return { index: isStart ? 0 : messages.length - 1, error: "" };
+  }
+
+  if (!text.trim()) {
+    return {
+      index: -1,
+      error: "Pega el mensaje o activa la opción correspondiente."
+    };
+  }
+
+  const result = findMessage(text);
+
+  if (result.matches.length === 0) {
+    return {
+      index: -1,
+      error: "No se encontró el mensaje. Pega más texto del mensaje original."
+    };
+  }
+
+  if (result.matches.length > 1) {
+    return {
+      index: -1,
+      error: `El texto coincide con ${result.matches.length} mensajes. Pega más contenido para identificar uno solo.`
+    };
+  }
+
+  return { index: result.index, error: "" };
 }
 
 function update() {
   if (!messages.length) return;
 
-  const fromBeginning = $("fromBeginning").checked;
-  const toEnd = $("toEnd").checked;
+  $("startText").disabled = $("fromBeginning").checked;
+  $("endText").disabled = $("toEnd").checked;
 
-  $("startText").disabled = fromBeginning;
-  $("endText").disabled = toEnd;
+  const startResult = boundaryStatus(
+    $("startText").value,
+    true,
+    $("fromBeginning").checked
+  );
 
-  const start = fromBeginning
-    ? 0
-    : findBoundary($("startText").value, "start");
-
-  const end = toEnd
-    ? messages.length - 1
-    : findBoundary($("endText").value, "end");
+  const endResult = boundaryStatus(
+    $("endText").value,
+    false,
+    $("toEnd").checked
+  );
 
   const status = $("matchStatus");
   const counts = $("counts");
   const preview = $("preview");
   const button = $("make");
 
-  status.classList.remove("error");
-  button.disabled = true;
   selected = null;
+  button.disabled = true;
+  status.className = "status error";
+  counts.innerHTML = "";
+  preview.innerHTML = "";
 
-  if (start < 0 && !fromBeginning) {
-    status.textContent = $("startText").value.trim()
-      ? "No encontré el mensaje inicial. Comprueba que el texto esté copiado correctamente."
-      : "Pega el mensaje inicial o activa «Desde el inicio».";
-    status.classList.add("error");
-    counts.textContent = "";
-    preview.innerHTML = "";
+  if (startResult.error) {
+    status.textContent = "Inicio: " + startResult.error;
     return;
   }
 
-  if (end < 0 && !toEnd) {
-    status.textContent = $("endText").value.trim()
-      ? "No encontré el mensaje final. Comprueba que el texto esté copiado correctamente."
-      : "Pega el mensaje final o activa «Hasta el final».";
-    status.classList.add("error");
-    counts.textContent = "";
-    preview.innerHTML = "";
+  if (endResult.error) {
+    status.textContent = "Final: " + endResult.error;
     return;
   }
+
+  const start = startResult.index;
+  const end = endResult.index;
 
   if (start > end) {
     status.textContent =
-      "El mensaje inicial aparece después del mensaje final. Revisa los textos.";
-    status.classList.add("error");
-    counts.textContent = "";
-    preview.innerHTML = "";
+      "El mensaje inicial está después del final. Revisa los mensajes que pegaste.";
     return;
   }
 
@@ -476,22 +375,43 @@ function update() {
   const total = end - start + 1;
 
   counts.innerHTML =
-    `<span class="pill">${messages.length} mensajes en total</span>` +
-    `<span class="pill">${total} mensajes seleccionados</span>`;
+    `<span class="pill">Mensajes totales: ${messages.length}</span>` +
+    `<span class="pill">Fragmento: ${total} mensajes</span>` +
+    `<span class="pill">Inicio: ${start + 1}</span>` +
+    `<span class="pill">Final: ${end + 1}</span>`;
 
-  const sample = messages.slice(start, Math.min(end + 1, start + 10));
+  const first = messages[start];
+  const last = messages[end];
 
-  preview.innerHTML = sample.map((m, i) =>
-    `<div class="message">
-       <span class="number">Mensaje ${start + i + 1}</span>
-       ${esc(m.text).slice(0, 1200)}
-     </div>`
-  ).join("") +
-  (total > sample.length
-    ? `<div class="message">… ${total - sample.length} mensajes más</div>`
-    : "");
+  // Mostrar ambos extremos, incluso si el rango es muy largo.
+  const indexes = [];
+  for (let i = start; i <= Math.min(end, start + 3); i++) {
+    indexes.push(i);
+  }
 
-  status.textContent = "Rango detectado correctamente.";
+  if (end - start > 4) {
+    indexes.push(-1);
+  }
+
+  for (let i = Math.max(start + 4, end - 3); i <= end; i++) {
+    if (i >= start && !indexes.includes(i)) indexes.push(i);
+  }
+
+  preview.innerHTML = indexes.map(i => {
+    if (i === -1) {
+      return `<div class="message">… ${total - 8} mensajes intermedios …</div>`;
+    }
+
+    return `<div class="message">
+      <span class="number">Mensaje ${i + 1}${i === start ? " · INICIO" : i === end ? " · FINAL" : ""}</span>
+      ${escapeHTML(messages[i].text)}
+    </div>`;
+  }).join("");
+
+  status.className = "status success";
+  status.textContent =
+    "Ambos mensajes se identificaron de forma única. Revisa la vista previa antes de exportar.";
+
   button.disabled = false;
 }
 
@@ -506,13 +426,16 @@ $("file").addEventListener("change", async () => {
   $("exportCard").classList.add("hidden");
   $("fileInfo").textContent = "";
   $("status").textContent = "";
+  zip = null;
+  messages = [];
+  selected = null;
 
   const file = $("file").files[0];
   if (!file) return;
 
   try {
     if (!window.JSZip) {
-      throw Error("No se pudo cargar JSZip. Revisa tu conexión.");
+      throw Error("No se pudo cargar la librería ZIP. Comprueba tu conexión.");
     }
 
     $("fileInfo").textContent = "Leyendo archivo…";
@@ -527,7 +450,7 @@ $("file").addEventListener("change", async () => {
     );
 
     if (!txtFiles.length) {
-      throw Error("No encontré un archivo TXT en el ZIP.");
+      throw Error("No se encontró ningún archivo TXT en el ZIP.");
     }
 
     txtPath =
@@ -538,7 +461,7 @@ $("file").addEventListener("change", async () => {
     messages = parseChat(text);
 
     if (!messages.length) {
-      throw Error("No se detectaron mensajes en el TXT.");
+      throw Error("No se pudieron detectar mensajes en el TXT.");
     }
 
     chatName = txtPath.split("/").pop()
@@ -565,14 +488,15 @@ $("file").addEventListener("change", async () => {
   }
 });
 
-// Crea un ZIP que contiene el TXT recortado y los adjuntos
-// cuyos nombres se encuentran en los mensajes seleccionados.
 $("make").addEventListener("click", async () => {
   const button = $("make");
 
   try {
+    // Recalcular el rango antes de exportar.
+    update();
+
     if (!zip || !selected) {
-      throw Error("Primero selecciona un rango válido.");
+      throw Error("No hay un fragmento válido seleccionado.");
     }
 
     button.disabled = true;
@@ -584,9 +508,10 @@ $("make").addEventListener("click", async () => {
 
     output.file(
       txtPath,
-      chosen.map(m => m.text).join("\n") + "\n"
+      chosen.map(message => message.text).join("\n") + "\n"
     );
 
+    // Buscar nombres de adjuntos mencionados en los mensajes.
     const media = archiveFiles.filter(path =>
       path !== txtPath &&
       !/\.txt$/i.test(path) &&
@@ -627,8 +552,7 @@ $("make").addEventListener("click", async () => {
       }
     }
 
-    $("status").textContent =
-      "Generando ZIP. No cierres la página…";
+    $("status").textContent = "Generando ZIP…";
 
     const blob = await output.generateAsync({
       type: "blob",
@@ -651,13 +575,10 @@ $("make").addEventListener("click", async () => {
     setTimeout(() => URL.revokeObjectURL(url), 60000);
 
     $("status").textContent =
-      `¡Listo! Se exportaron ${chosen.length} mensajes y ` +
-      `${referenced.size} archivo(s) multimedia. ` +
-      "Revisa la carpeta de descargas.";
+      `¡Listo! ${chosen.length} mensajes y ${referenced.size} archivos multimedia identificados. Revisa tus descargas.`;
 
   } catch (error) {
-    $("status").textContent =
-      "Error al crear el ZIP: " + error.message;
+    $("status").textContent = "Error: " + error.message;
   } finally {
     button.disabled = !selected;
   }
