@@ -1,0 +1,492 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#075e54">
+<title>Recortar WhatsApp</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #f3f7f6;
+  color: #172b2a;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+}
+
+header {
+  background: #075e54;
+  color: white;
+  padding: 24px 18px;
+}
+
+header h1 {
+  font-size: 26px;
+  margin: 0 0 8px;
+}
+
+header p { margin: 0; }
+
+main {
+  width: min(760px, 100%);
+  margin: auto;
+  padding: 16px;
+}
+
+.card {
+  background: white;
+  border: 1px solid #dce7e4;
+  border-radius: 16px;
+  padding: 18px;
+  margin-bottom: 14px;
+}
+
+h2 {
+  font-size: 19px;
+  margin: 0 0 12px;
+}
+
+p { color: #60716f; }
+
+label {
+  display: block;
+  font-weight: 650;
+  margin: 14px 0 7px;
+}
+
+input[type=file],
+input[type=number] {
+  width: 100%;
+  min-height: 48px;
+  padding: 10px;
+  border: 1px solid #bdcfca;
+  border-radius: 10px;
+  background: white;
+  font: inherit;
+}
+
+.drop {
+  border: 2px dashed #8bc9bb;
+  background: #f5fbf9;
+  border-radius: 12px;
+  padding: 18px;
+  text-align: center;
+}
+
+.drop strong {
+  display: block;
+  color: #075e54;
+  margin-bottom: 8px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+button {
+  font: inherit;
+  font-weight: 700;
+  min-height: 48px;
+  border: 0;
+  border-radius: 11px;
+  padding: 12px 16px;
+  cursor: pointer;
+}
+
+.primary {
+  background: #128c7e;
+  color: white;
+  width: 100%;
+  margin-top: 16px;
+}
+
+button:disabled {
+  opacity: .5;
+  cursor: wait;
+}
+
+.preview {
+  max-height: 340px;
+  overflow: auto;
+  border: 1px solid #dce7e4;
+  border-radius: 10px;
+  padding: 10px;
+  background: #f7faf9;
+}
+
+.item {
+  padding: 9px 7px;
+  border-bottom: 1px solid #e6eeeb;
+  overflow-wrap: anywhere;
+}
+
+.num {
+  color: #075e54;
+  font-weight: 750;
+  margin-right: 6px;
+}
+
+.pill {
+  display: inline-block;
+  background: #e9f7f3;
+  color: #075e54;
+  border-radius: 999px;
+  padding: 4px 9px;
+  font-size: 14px;
+  margin: 4px;
+}
+
+.notice {
+  background: #f0f8f5;
+  border: 1px solid #cde9df;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 14px;
+  color: #385a51;
+}
+
+.status {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  margin-top: 12px;
+  color: #075e54;
+  font-weight: 600;
+}
+
+.hidden { display: none; }
+
+@media(max-width:480px) {
+  header { padding: 20px 16px; }
+  header h1 { font-size: 23px; }
+  main { padding: 12px; }
+  .card { padding: 15px; }
+  .grid { gap: 9px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Recortar conversación de WhatsApp</h1>
+  <p>Selecciona un rango de mensajes y crea un ZIP con ese fragmento.</p>
+</header>
+
+<main>
+
+<section class="card">
+  <h2>1. Selecciona la exportación</h2>
+  <p>Carga el ZIP exportado desde WhatsApp.</p>
+  <div class="drop">
+    <strong>Seleccionar archivo ZIP</strong>
+    <input id="file" type="file" accept=".zip,application/zip">
+  </div>
+  <div id="fileInfo"></div>
+</section>
+
+<section id="rangeCard" class="card hidden">
+  <h2>2. Define el rango</h2>
+  <p>Los números siguen el orden de los mensajes.</p>
+  <div class="grid">
+    <div>
+      <label for="from">Mensaje inicial</label>
+      <input id="from" type="number" min="1" step="1" inputmode="numeric">
+    </div>
+    <div>
+      <label for="to">Mensaje final</label>
+      <input id="to" type="number" min="1" step="1" inputmode="numeric">
+    </div>
+  </div>
+  <div id="counts"></div>
+</section>
+
+<section id="previewCard" class="card hidden">
+  <h2>3. Vista previa</h2>
+  <div id="preview" class="preview"></div>
+  <p>Se muestran hasta 8 mensajes de ejemplo.</p>
+</section>
+
+<section id="exportCard" class="card hidden">
+  <h2>4. Genera el ZIP</h2>
+  <p>Se incluirán el texto seleccionado y los archivos multimedia identificados.</p>
+  <button id="make" class="primary">
+    Crear y descargar ZIP
+  </button>
+  <div id="status" class="status" role="status" aria-live="polite"></div>
+</section>
+
+<div class="notice">
+  El procesamiento se realiza en tu navegador.
+  No se envía la conversación a ningún servidor.
+  Necesitas conexión a Internet para cargar la librería ZIP.
+  Mantén la página abierta durante el proceso.
+</div>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+
+<script>
+(() => {
+const $ = id => document.getElementById(id);
+
+let zip = null;
+let txtPath = "";
+let chatName = "conversacion";
+let messages = [];
+let archiveFiles = [];
+
+const patterns = [
+  /^\u200e?\[?(\d{1,4}[./-]\d{1,2}[./-]\d{2,4}),?\s+(\d{1,2}:\d{2}(?::\d{2})?(?:\s?[ap]\.?\s?m\.?)?)\]?\s*[-–]\s*(.*?):\s/iu,
+  /^\u200e?(\d{1,4}[./-]\d{1,2}[./-]\d{2,4}),?\s+(\d{1,2}:\d{2}(?::\d{2})?(?:\s?[ap]\.?\s?m\.?)?)\s+-\s+(.*?):\s/iu,
+  /^\u200e?\[(\d{1,2}\/\d{1,2}\/\d{2,4}),\s*(\d{1,2}:\d{2}(?::\d{2})?(?:\s?[ap]\.?\s?m\.?)?)\]\s*(.*?):\s/iu
+];
+
+function isHeader(line) {
+  return patterns.some(r => r.test(line));
+}
+
+function parseChat(text) {
+  const rows = text.replace(/^\uFEFF/, "").split(/\r\n|\n|\r/);
+  const out = [];
+  let current = null;
+
+  for (const line of rows) {
+    if (isHeader(line)) {
+      if (current) out.push(current);
+      current = { text: line, header: line };
+    } else if (current) {
+      current.text += "\n" + line;
+    } else if (line.trim()) {
+      current = { text: line, header: line };
+    }
+  }
+
+  if (current) out.push(current);
+  return out;
+}
+
+function esc(s) {
+  return s.replace(/[&<>"']/g, c => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  }[c]));
+}
+
+function selectedRange() {
+  const max = messages.length;
+  let a = Number($("from").value);
+  let b = Number($("to").value);
+
+  if (!Number.isInteger(a) || !Number.isInteger(b)) return null;
+
+  a = Math.max(1, Math.min(max, a));
+  b = Math.max(1, Math.min(max, b));
+
+  return [Math.min(a, b), Math.max(a, b)];
+}
+
+function update() {
+  if (!messages.length) return;
+
+  const r = selectedRange();
+
+  if (!r) {
+    $("counts").textContent = "Ingresa números enteros.";
+    return;
+  }
+
+  const [a, b] = r;
+
+  $("counts").innerHTML =
+    `<span class="pill">${messages.length} mensajes detectados</span>` +
+    `<span class="pill">${b-a+1} seleccionados</span>`;
+
+  const sample = messages.slice(a-1, Math.min(b, a+7));
+
+  $("preview").innerHTML =
+    sample.map((m, i) =>
+      `<div class="item"><span class="num">#${a+i}</span>${esc(m.header).slice(0,500)}</div>`
+    ).join("") +
+    (b-a+1 > sample.length
+      ? `<div class="item">… ${b-a+1-sample.length} mensajes más</div>`
+      : "");
+}
+
+$("file").addEventListener("change", async () => {
+  $("rangeCard").classList.add("hidden");
+  $("previewCard").classList.add("hidden");
+  $("exportCard").classList.add("hidden");
+  $("status").textContent = "";
+  $("fileInfo").textContent = "";
+
+  const f = $("file").files[0];
+  if (!f) return;
+
+  try {
+    if (!window.JSZip) {
+      throw Error("No se pudo cargar la librería ZIP. Revisa tu conexión.");
+    }
+
+    $("fileInfo").textContent = "Leyendo archivo…";
+    zip = await JSZip.loadAsync(f);
+
+    archiveFiles = Object.keys(zip.files)
+      .filter(n => !zip.files[n].dir);
+
+    const txts = archiveFiles.filter(n =>
+      /\.txt$/i.test(n) && !/(^|\/)__MACOSX\//i.test(n)
+    );
+
+    if (!txts.length) {
+      throw Error("El ZIP no contiene un archivo TXT.");
+    }
+
+    txtPath = txts.find(n => /WhatsApp Chat/i.test(n)) || txts[0];
+
+    const txt = await zip.file(txtPath).async("string");
+    messages = parseChat(txt);
+
+    if (!messages.length) {
+      throw Error("No se detectaron mensajes en el archivo TXT.");
+    }
+
+    chatName = txtPath.split("/").pop()
+      .replace(/\.txt$/i, "")
+      .replace(/[\\/:*?"<>|]/g, "_") || "conversacion";
+
+    $("fileInfo").textContent =
+      `${f.name} · ${messages.length} mensajes`;
+
+    $("from").value = "1";
+    $("to").value = String(messages.length);
+    $("from").max = String(messages.length);
+    $("to").max = String(messages.length);
+
+    $("rangeCard").classList.remove("hidden");
+    $("previewCard").classList.remove("hidden");
+    $("exportCard").classList.remove("hidden");
+
+    update();
+
+  } catch (e) {
+    zip = null;
+    $("fileInfo").textContent = "Error: " + e.message;
+  }
+});
+
+$("from").addEventListener("input", update);
+$("to").addEventListener("input", update);
+
+$("make").addEventListener("click", async () => {
+  const btn = $("make");
+
+  try {
+    if (!zip || !messages.length) {
+      throw Error("Selecciona primero un ZIP válido.");
+    }
+
+    const r = selectedRange();
+    if (!r) throw Error("Ingresa un rango válido.");
+
+    const [a, b] = r;
+    btn.disabled = true;
+    $("status").textContent = "Preparando mensajes…";
+
+    const chosen = messages.slice(a-1, b);
+    const newZip = new JSZip();
+
+    // Crear el TXT únicamente con los mensajes seleccionados.
+    newZip.file(
+      txtPath,
+      chosen.map(m => m.text).join("\n") + "\n"
+    );
+
+    // Buscar archivos multimedia mencionados en el texto.
+    const candidates = archiveFiles.filter(n =>
+      n !== txtPath &&
+      !/\.txt$/i.test(n) &&
+      !/(^|\/)__MACOSX\//i.test(n)
+    );
+
+    const byBase = new Map();
+
+    for (const path of candidates) {
+      const base = path.split("/").pop().toLowerCase();
+
+      if (base) {
+        if (!byBase.has(base)) byBase.set(base, []);
+        byBase.get(base).push(path);
+      }
+    }
+
+    const referenced = new Set();
+
+    for (const m of chosen) {
+      const lower = m.text.toLowerCase();
+
+      for (const [base, paths] of byBase) {
+        if (
+          /\.(jpe?g|png|gif|webp|heic|mp4|mov|avi|3gp|m4a|mp3|opus|ogg|wav|pdf|docx?|xlsx?|pptx?|vcf|zip)$/i.test(base) &&
+          lower.includes(base)
+        ) {
+          for (const p of paths) referenced.add(p);
+        }
+      }
+    }
+
+    $("status").textContent =
+      `Copiando ${referenced.size} archivo(s) multimedia…`;
+
+    for (const path of referenced) {
+      const entry = zip.file(path);
+      if (entry) {
+        newZip.file(path, await entry.async("uint8array"));
+      }
+    }
+
+    $("status").textContent =
+      "Comprimiendo… No cierres esta página.";
+
+    const blob = await newZip.generateAsync({
+      type: "blob",
+      compression: "DEFLATE",
+      compressionOptions: { level: 4 }
+    });
+
+    const url = URL.createObjectURL(blob);
+    const aTag = document.createElement("a");
+
+    aTag.href = url;
+    aTag.download = `${chatName}_mensajes_${a}-${b}.zip`;
+    aTag.style.display = "none";
+
+    document.body.appendChild(aTag);
+    aTag.click();
+    aTag.remove();
+
+    setTimeout(() => URL.revokeObjectURL(url), 60000);
+
+    $("status").textContent =
+      `Listo: ${b-a+1} mensajes y ${referenced.size} archivos adjuntos. Revisa Descargas si no aparece el archivo.`;
+
+  } catch (e) {
+    $("status").textContent =
+      "No se pudo crear el ZIP: " + e.message;
+  } finally {
+    btn.disabled = false;
+  }
+});
+})();
+</script>
+</body>
+</html>
