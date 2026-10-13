@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,79 +5,272 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#075e54">
 <title>Recortar conversación de WhatsApp</title>
+
 <style>
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
+
 body {
-  margin: 0; background: #f3f7f6; color: #172b2a;
-  font-family: system-ui, -apple-system, sans-serif;
+  margin: 0;
+  background: #f3f7f6;
+  color: #172b2a;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
-header { background: #075e54; color: white; padding: 22px 16px; }
-header h1 { font-size: 24px; margin: 0 0 8px; }
-header p { margin: 0; }
-main { max-width: 760px; margin: auto; padding: 14px; }
+
+header {
+  background: #075e54;
+  color: white;
+  padding: 22px 16px;
+}
+
+header h1 {
+  font-size: 24px;
+  margin: 0 0 8px;
+}
+
+header p {
+  margin: 0;
+}
+
+main {
+  max-width: 820px;
+  margin: auto;
+  padding: 14px;
+}
+
 .card {
-  background: white; border: 1px solid #dce7e4;
-  border-radius: 15px; padding: 17px; margin-bottom: 14px;
+  background: white;
+  border: 1px solid #dce7e4;
+  border-radius: 15px;
+  padding: 17px;
+  margin-bottom: 14px;
 }
-h2 { font-size: 19px; margin: 0 0 12px; }
-p { color: #60716f; line-height: 1.5; }
-label { display: block; font-weight: 650; margin: 12px 0 7px; }
-textarea, input[type=file] {
-  width: 100%; padding: 12px; border: 1px solid #bdcfca;
-  border-radius: 10px; background: white; font: inherit;
+
+h2 {
+  font-size: 19px;
+  margin: 0 0 12px;
 }
-textarea { min-height: 100px; resize: vertical; }
+
+p {
+  color: #60716f;
+  line-height: 1.5;
+}
+
+label {
+  display: block;
+  font-weight: 650;
+  margin: 12px 0 7px;
+}
+
+textarea,
+input[type=file] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #bdcfca;
+  border-radius: 10px;
+  background: white;
+  font: inherit;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
 .check {
-  display: flex; gap: 10px; align-items: flex-start;
-  background: #f0f8f5; padding: 12px; border-radius: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: #f0f8f5;
+  padding: 12px;
+  border-radius: 10px;
   margin: 12px 0;
 }
-.check input { width: 20px; height: 20px; accent-color: #128c7e; }
+
+.check input {
+  width: 20px;
+  height: 20px;
+  accent-color: #128c7e;
+  flex-shrink: 0;
+}
+
 .drop {
-  border: 2px dashed #8bc9bb; background: #f5fbf9;
-  border-radius: 12px; padding: 16px; text-align: center;
+  border: 2px dashed #8bc9bb;
+  background: #f5fbf9;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
 }
-.drop strong { display: block; color: #075e54; margin-bottom: 8px; }
+
+.drop strong {
+  display: block;
+  color: #075e54;
+  margin-bottom: 8px;
+}
+
 button {
-  width: 100%; min-height: 48px; border: 0;
-  border-radius: 11px; padding: 12px;
-  font: inherit; font-weight: 700; cursor: pointer;
+  width: 100%;
+  min-height: 48px;
+  border: 0;
+  border-radius: 11px;
+  padding: 12px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
 }
-.primary { background: #128c7e; color: white; margin-top: 14px; }
-button:disabled { opacity: .45; cursor: not-allowed; }
+
+.primary {
+  background: #128c7e;
+  color: white;
+  margin-top: 14px;
+}
+
+button:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+}
+
 .preview {
-  max-height: 380px; overflow: auto; background: #f7faf9;
-  border: 1px solid #dce7e4; border-radius: 10px; padding: 10px;
+  max-height: 600px;
+  overflow: auto;
+  background: #f7faf9;
+  border: 1px solid #dce7e4;
+  border-radius: 10px;
+  padding: 10px;
 }
+
 .message {
-  padding: 10px; border-bottom: 1px solid #e6eeeb;
-  overflow-wrap: anywhere; white-space: pre-wrap;
+  padding: 11px 10px;
+  border-bottom: 1px solid #e6eeeb;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
   font-size: 14px;
 }
-.message:last-child { border: 0; }
-.number { display: block; color: #075e54; font-weight: 750; }
+
+.message:last-child {
+  border: 0;
+}
+
+.message-media {
+  background: #f0f8f5;
+}
+
+.number {
+  display: block;
+  color: #075e54;
+  font-weight: 750;
+  margin-bottom: 4px;
+}
+
+.media-label {
+  display: inline-block;
+  margin-top: 7px;
+  background: #dff4ed;
+  color: #075e54;
+  border-radius: 999px;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
 .pill {
-  display: inline-block; background: #e9f7f3; color: #075e54;
-  border-radius: 999px; padding: 5px 10px;
-  font-size: 13px; margin: 4px;
+  display: inline-block;
+  background: #e9f7f3;
+  color: #075e54;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 13px;
+  margin: 4px;
 }
-.status { white-space: pre-wrap; margin-top: 12px; font-weight: 600; }
-.error { color: #b42318; }
-.success { color: #087e63; }
+
+.status {
+  white-space: pre-wrap;
+  margin-top: 12px;
+  font-weight: 600;
+}
+
+.error {
+  color: #b42318;
+}
+
+.success {
+  color: #087e63;
+}
+
+.warning {
+  color: #9a6700;
+}
+
 .notice {
-  background: #f0f8f5; border: 1px solid #cde9df;
-  border-radius: 10px; padding: 12px; font-size: 14px;
-  color: #385a51; margin-bottom: 20px;
+  background: #f0f8f5;
+  border: 1px solid #cde9df;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 14px;
+  color: #385a51;
+  margin-bottom: 20px;
 }
-.hidden { display: none; }
+
+.media-option {
+  background: #fff8e6;
+  border: 1px solid #ead8a0;
+  border-radius: 10px;
+  padding: 13px;
+  margin-top: 14px;
+}
+
+.media-option .check {
+  background: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+.media-summary {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #675c3a;
+}
+
+.hidden {
+  display: none;
+}
+
+.progress {
+  height: 8px;
+  background: #e4ece9;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 12px;
+}
+
+.progress-bar {
+  width: 0%;
+  height: 100%;
+  background: #128c7e;
+  transition: width .15s ease;
+}
+
 @media(max-width:480px) {
-  header h1 { font-size: 22px; }
-  main { padding: 10px; }
-  .card { padding: 14px; }
-  textarea { font-size: 16px; }
+  header h1 {
+    font-size: 22px;
+  }
+
+  main {
+    padding: 10px;
+  }
+
+  .card {
+    padding: 14px;
+  }
+
+  textarea {
+    font-size: 16px;
+  }
 }
 </style>
 </head>
+
 <body>
 
 <header>
@@ -87,503 +279,1804 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 </header>
 
 <main>
+
 <section class="card">
   <h2>1. Selecciona el ZIP</h2>
-  <p>Sube el archivo que exportaste desde WhatsApp.</p>
+
+  <p>
+    Sube el archivo ZIP que exportaste desde WhatsApp.
+    Se conservarán los mensajes, pies de foto y archivos multimedia.
+  </p>
+
   <div class="drop">
     <strong>Seleccionar archivo ZIP</strong>
     <input id="file" type="file" accept=".zip,application/zip">
   </div>
+
   <div id="fileInfo"></div>
 </section>
 
+
 <section id="rangeCard" class="card hidden">
+
   <h2>2. Selecciona el fragmento</h2>
+
   <p>
     Pega el texto de los mensajes que delimitan el fragmento.
-    Puedes pegar el mensaje completo o una parte suficientemente
-    específica para identificarlo.
+    Puedes pegar el mensaje completo o una parte suficientemente específica.
   </p>
 
   <label for="startText">Mensaje inicial</label>
-  <textarea id="startText"
-    placeholder="Pega aquí el mensaje desde el que quieres comenzar..."></textarea>
+
+  <textarea
+    id="startText"
+    placeholder="Pega aquí el mensaje desde el que quieres comenzar..."
+  ></textarea>
 
   <label class="check">
     <input type="checkbox" id="fromBeginning">
-    <span><strong>Desde el inicio</strong><br>
-    Comenzar desde el primer mensaje.</span>
+
+    <span>
+      <strong>Desde el inicio</strong><br>
+      Comenzar desde el primer mensaje.
+    </span>
   </label>
 
   <hr style="border:0;border-top:1px solid #dce7e4;margin:20px 0">
 
   <label for="endText">Mensaje final</label>
-  <textarea id="endText"
-    placeholder="Pega aquí el último mensaje que quieres incluir..."></textarea>
+
+  <textarea
+    id="endText"
+    placeholder="Pega aquí el último mensaje que quieres incluir..."
+  ></textarea>
 
   <label class="check">
     <input type="checkbox" id="toEnd">
-    <span><strong>Hasta el final</strong><br>
-    Incluir todos los mensajes hasta el último.</span>
+
+    <span>
+      <strong>Hasta el final</strong><br>
+      Incluir todos los mensajes hasta el último.
+    </span>
   </label>
 
   <div id="counts"></div>
-  <div id="matchStatus" class="status" aria-live="polite"></div>
+
+  <div id="matchStatus"
+       class="status"
+       aria-live="polite">
+  </div>
+
 </section>
+
 
 <section id="previewCard" class="card hidden">
+
   <h2>3. Comprueba el fragmento</h2>
+
+  <p>
+    Aquí se muestran <strong>todos los mensajes</strong> del fragmento seleccionado,
+    incluidos los pies de foto y mensajes con archivos adjuntos.
+  </p>
+
   <div id="preview" class="preview"></div>
-  <p>Vista previa de los primeros y últimos mensajes del rango.</p>
+
 </section>
+
 
 <section id="exportCard" class="card hidden">
+
   <h2>4. Exportar</h2>
-  <p>Se creará un ZIP con el texto seleccionado y los archivos multimedia que puedan identificarse.</p>
-  <button id="make" class="primary" disabled>
+
+  <p>
+    Se creará un nuevo ZIP conservando el TXT y los archivos multimedia.
+  </p>
+
+
+  <div class="media-option">
+
+    <label class="check">
+
+      <input
+        type="checkbox"
+        id="includeAllMedia"
+        checked
+      >
+
+      <span>
+        <strong>Incluir todos los archivos multimedia originales</strong><br>
+
+        Esta opción está activada para garantizar que no se pierdan
+        imágenes, audios, vídeos o documentos por una referencia que
+        WhatsApp haya escrito de forma diferente.
+
+      </span>
+
+    </label>
+
+    <div id="mediaSummary" class="media-summary"></div>
+
+  </div>
+
+
+  <button
+    id="make"
+    class="primary"
+    disabled
+  >
     Crear y descargar ZIP
   </button>
-  <div id="status" class="status" role="status" aria-live="polite"></div>
+
+  <div
+    id="progress"
+    class="progress hidden"
+  >
+    <div
+      id="progressBar"
+      class="progress-bar"
+    ></div>
+  </div>
+
+  <div
+    id="status"
+    class="status"
+    role="status"
+    aria-live="polite"
+  ></div>
+
 </section>
 
+
 <div class="notice">
-  El procesamiento se realiza en tu navegador. No se envía tu
-  conversación a ningún servidor. Necesitas conexión a Internet
-  para cargar la librería ZIP. No cierres la página durante la exportación.
+
+  <strong>Privacidad:</strong>
+
+  El procesamiento se realiza completamente en tu navegador.
+  Tu conversación y tus archivos no se envían a ningún servidor.
+
+  <br><br>
+
+  Necesitas conexión a Internet solamente para cargar la librería
+  JSZip utilizada para abrir y crear los archivos ZIP.
+
 </div>
+
 </main>
 
+
 <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+
 <script>
 (() => {
+
 "use strict";
+
+
+/* ============================================================
+   ESTADO
+============================================================ */
 
 const $ = id => document.getElementById(id);
 
 let zip = null;
+
 let txtPath = "";
+
 let chatName = "conversacion";
+
 let messages = [];
+
 let archiveFiles = [];
+
+let mediaFiles = [];
+
 let selected = null;
 
+
+/* ============================================================
+   EXTENSIONES MULTIMEDIA / ARCHIVOS
+============================================================ */
+
+const imageExtensions = new Set([
+  "jpg",
+  "jpeg",
+  "png",
+  "gif",
+  "webp",
+  "heic",
+  "heif",
+  "bmp",
+  "tif",
+  "tiff",
+  "svg",
+  "ico"
+]);
+
+const videoExtensions = new Set([
+  "mp4",
+  "mov",
+  "avi",
+  "3gp",
+  "3g2",
+  "m4v",
+  "webm",
+  "mkv",
+  "flv",
+  "wmv",
+  "ts",
+  "vob"
+]);
+
+const audioExtensions = new Set([
+  "mp3",
+  "opus",
+  "m4a",
+  "m4r",
+  "aac",
+  "amr",
+  "flac",
+  "ogg",
+  "wav",
+  "wma"
+]);
+
+const documentExtensions = new Set([
+  "pdf",
+  "doc",
+  "docx",
+  "xls",
+  "xlsx",
+  "ppt",
+  "pptx",
+  "txt",
+  "html",
+  "epub",
+  "vcf",
+  "csv",
+  "rtf",
+  "rar",
+  "7z",
+  "zip",
+  "tar",
+  "gz",
+  "json",
+  "xml",
+  "ics"
+]);
+
+
+function extensionOf(path) {
+
+  const name = path
+    .split("/")
+    .pop()
+    .toLowerCase();
+
+  const match = name.match(/\.([a-z0-9]+)$/i);
+
+  return match
+    ? match[1].toLowerCase()
+    : "";
+
+}
+
+
+function isMediaOrAttachment(path) {
+
+  const ext = extensionOf(path);
+
+  return (
+    imageExtensions.has(ext) ||
+    videoExtensions.has(ext) ||
+    audioExtensions.has(ext) ||
+    documentExtensions.has(ext)
+  );
+
+}
+
+
+function mediaType(path) {
+
+  const ext = extensionOf(path);
+
+  if (imageExtensions.has(ext)) return "imagen";
+
+  if (videoExtensions.has(ext)) return "vídeo";
+
+  if (audioExtensions.has(ext)) return "audio";
+
+  if (documentExtensions.has(ext)) return "documento";
+
+  return "archivo";
+
+}
+
+
+/* ============================================================
+   FECHAS DE WHATSAPP
+============================================================ */
+
 /*
-  Detecta el comienzo de un mensaje por su fecha y hora.
-  Admite exportaciones habituales de Android y iPhone,
-  con o sin corchetes y segundos.
+  Se aceptan:
+
+  12/10/2026, 15:30 - Juan: Hola
+  12/10/26, 15:30 - Juan: Hola
+  [12/10/2026, 15:30] Juan: Hola
+  12/10/2026, 15:30:22 - Juan: Hola
+  10/12/2026, 3:30 PM - Juan: Hola
 */
+
 const datePatterns = [
-  /^\u200e?\[?\d{1,4}[./-]\d{1,2}[./-]\d{2,4},?\s+\d{1,2}:\d{2}(?::\d{2})?(?:\s?[ap]\.?\s?m\.?)?\]?\s*(?:-\s*)?/iu,
-  /^\u200e?\[?\d{1,4}[./-]\d{1,2}[./-]\d{2,4}\s*,\s*\d{1,2}:\d{2}(?::\d{2})?(?:\s?[ap]\.?\s?m\.?)?\]?\s*(?:-\s*)?/iu
+
+  /^\u200e?\[?\d{1,4}[./-]\d{1,2}[./-]\d{2,4},?\s+\d{1,2}:\d{2}(?::\d{2})?(?:\s?[ap]\.?m\.?)?\]?\s*(?:-\s*)?/iu,
+
+  /^\u200e?\[?\d{1,4}[./-]\d{1,2}[./-]\d{2,4}\s*,\s*\d{1,2}:\d{2}(?::\d{2})?(?:\s?[ap]\.?m\.?)?\]?\s*(?:-\s*)?/iu,
+
+  /^\u200e?\[?\d{1,4}[./-]\d{1,2}[./-]\d{2,4},?\s+\d{1,2}:\d{2}(?::\d{2})?\s*[AP]\.?M\.?\]?\s*(?:-\s*)?/iu
+
 ];
 
+
 function getDatePrefix(line) {
+
   for (const pattern of datePatterns) {
+
     const match = line.match(pattern);
-    if (match) return match[0];
+
+    if (match) {
+      return match[0];
+    }
+
   }
+
   return null;
+
 }
+
+
+/* ============================================================
+   PARSER DEL CHAT
+============================================================ */
 
 function parseChat(text) {
-  const lines = text.replace(/^\uFEFF/, "").split(/\r\n|\n|\r/);
+
+  text = text
+    .replace(/^\uFEFF/, "")
+    .replace(/\r\n/g, "\n")
+    .replace(/\r/g, "\n");
+
+  const lines = text.split("\n");
+
   const result = [];
+
   let current = null;
 
+
   for (const line of lines) {
+
     const prefix = getDatePrefix(line);
 
+
     if (prefix !== null) {
-      if (current) result.push(current);
+
+      if (current) {
+        result.push(current);
+      }
+
 
       const remainder = line.slice(prefix.length);
-      const senderMatch = remainder.match(/^([^:\n]{1,100}):\s?/);
+
+
+      /*
+        Detectar remitente.
+
+        Android normalmente:
+        Nombre: mensaje
+
+        Algunas variantes:
+        - Nombre: mensaje
+      */
+
+      let sender = "";
+
+      let body = remainder;
+
+
+      const senderMatch = remainder.match(
+        /^([^:\n]{1,150}):\s?(.*)$/u
+      );
+
+
+      if (senderMatch) {
+
+        sender = senderMatch[1].trim();
+
+        body = senderMatch[2];
+
+      }
+
 
       current = {
+
         text: line,
-        body: senderMatch
-          ? remainder.slice(senderMatch[0].length)
-          : remainder,
-        firstLine: line
+
+        body: body,
+
+        sender: sender,
+
+        timestamp: prefix,
+
+        lines: [line]
+
       };
+
+
     } else if (current) {
+
+      /*
+        Las líneas que no comienzan con fecha pertenecen
+        al mensaje anterior.
+
+        Esto es importante para pies de foto,
+        mensajes multilínea y textos con saltos de línea.
+      */
+
       current.text += "\n" + line;
+
       current.body += "\n" + line;
+
+      current.lines.push(line);
+
+
     } else if (line.trim()) {
-      // Texto anterior al primer encabezado, si existe.
+
+      /*
+        Línea inicial del aviso de cifrado u otro contenido
+        que aparezca antes del primer mensaje.
+      */
+
       current = {
+
         text: line,
+
         body: line,
-        firstLine: line
+
+        sender: "",
+
+        timestamp: "",
+
+        lines: [line]
+
       };
+
     }
+
   }
 
-  if (current) result.push(current);
+
+  if (current) {
+    result.push(current);
+  }
+
+
   return result;
+
 }
 
-/*
-  Normalización conservadora:
-  elimina diferencias de espacios y mayúsculas,
-  pero conserva letras, números y puntuación.
-*/
+
+/* ============================================================
+   NORMALIZACIÓN
+============================================================ */
+
 function normalize(value) {
-  return value
+
+  return String(value || "")
+
     .normalize("NFC")
-    .replace(/[\u200e\u200f\u202a-\u202e\u2066-\u2069]/g, "")
+
+    .replace(
+      /[\u200e\u200f\u202a-\u202e\u2066-\u2069]/g,
+      ""
+    )
+
     .replace(/\u00a0/g, " ")
+
     .replace(/\s+/g, " ")
+
     .trim()
+
     .toLocaleLowerCase();
+
 }
 
-/*
-  Solo se acepta una coincidencia única.
-  Si el texto pegado aparece en varios mensajes,
-  se exige que el usuario aporte más texto.
-*/
+
+/* ============================================================
+   BUSCAR MENSAJE
+============================================================ */
+
 function findMessage(pasted) {
+
   const needle = normalize(pasted);
-  if (!needle) return { index: -1, matches: [] };
+
+  if (!needle) {
+
+    return {
+      index: -1,
+      matches: []
+    };
+
+  }
+
 
   const matches = [];
 
+
   messages.forEach((message, index) => {
+
     const full = normalize(message.text);
+
     const body = normalize(message.body);
 
-    if (full.includes(needle) || body.includes(needle)) {
+
+    if (
+      full.includes(needle) ||
+      body.includes(needle)
+    ) {
+
       matches.push(index);
+
     }
+
   });
 
+
   if (matches.length === 1) {
-    return { index: matches[0], matches };
+
+    return {
+      index: matches[0],
+      matches
+    };
+
   }
 
-  return { index: -1, matches };
+
+  return {
+    index: -1,
+    matches
+  };
+
 }
+
+
+/* ============================================================
+   ESCAPE HTML
+============================================================ */
 
 function escapeHTML(value) {
-  return value.replace(/[&<>"']/g, char => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;"
-  }[char]));
+
+  return String(value || "").replace(
+    /[&<>"']/g,
+    char => ({
+
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+
+    }[char])
+  );
+
 }
 
-function resolveRange() {
-  if (!messages.length) return null;
 
-  const start = $("fromBeginning").checked
-    ? 0
-    : findMessage($("startText").value).index;
+/* ============================================================
+   EXTRAER REFERENCIAS A ARCHIVOS
+============================================================ */
 
-  const end = $("toEnd").checked
-    ? messages.length - 1
-    : findMessage($("endText").value).index;
+function findReferencedMedia(message) {
 
-  if (start < 0 || end < 0 || start > end) return null;
+  const text = message.text || "";
 
-  return { start, end };
-}
+  const normalizedText = normalize(text);
 
-function boundaryStatus(text, isStart, useExtreme) {
-  if (useExtreme) {
-    return { index: isStart ? 0 : messages.length - 1, error: "" };
+  const result = [];
+
+  for (const path of mediaFiles) {
+
+    const filename = path
+      .split("/")
+      .pop();
+
+    if (!filename) continue;
+
+
+    const normalizedFilename =
+      normalize(filename);
+
+
+    /*
+      Caso normal:
+
+      IMG-20261012-WA0001.jpg
+      PTT-20261012-WA0002.opus
+
+      aparece directamente en el TXT.
+    */
+
+    if (
+      normalizedText.includes(normalizedFilename)
+    ) {
+
+      result.push(path);
+
+      continue;
+
+    }
+
+
+    /*
+      También probamos la ruta sin espacios
+      y el nombre original.
+    */
+
+    if (
+      normalizedText.includes(
+        normalize(
+          filename.replace(
+            /[\(\[\{].*?[\)\]\}]/g,
+            ""
+          )
+        )
+      )
+    ) {
+
+      result.push(path);
+
+    }
+
   }
+
+
+  return [...new Set(result)];
+
+}
+
+
+/* ============================================================
+   DETERMINAR SI UN MENSAJE TIENE MEDIA
+============================================================ */
+
+function messageMedia(message) {
+
+  return findReferencedMedia(message);
+
+}
+
+
+/* ============================================================
+   SELECCIÓN DEL RANGO
+============================================================ */
+
+function boundaryStatus(
+  text,
+  isStart,
+  useExtreme
+) {
+
+  if (useExtreme) {
+
+    return {
+
+      index: isStart
+        ? 0
+        : messages.length - 1,
+
+      error: ""
+
+    };
+
+  }
+
 
   if (!text.trim()) {
+
     return {
+
       index: -1,
-      error: "Pega el mensaje o activa la opción correspondiente."
+
+      error:
+        "Pega el mensaje o activa la opción correspondiente."
+
     };
+
   }
 
-  const result = findMessage(text);
+
+  const result =
+    findMessage(text);
+
 
   if (result.matches.length === 0) {
+
     return {
+
       index: -1,
-      error: "No se encontró el mensaje. Pega más texto del mensaje original."
+
+      error:
+        "No se encontró el mensaje. Pega más texto del mensaje original."
+
     };
+
   }
+
 
   if (result.matches.length > 1) {
+
     return {
+
       index: -1,
-      error: `El texto coincide con ${result.matches.length} mensajes. Pega más contenido para identificar uno solo.`
+
+      error:
+        `El texto coincide con ${result.matches.length} mensajes. Pega más contenido para identificar uno solo.`
+
     };
+
   }
 
-  return { index: result.index, error: "" };
+
+  return {
+
+    index: result.index,
+
+    error: ""
+
+  };
+
 }
+
+
+/* ============================================================
+   ACTUALIZAR INTERFAZ
+============================================================ */
 
 function update() {
-  if (!messages.length) return;
 
-  $("startText").disabled = $("fromBeginning").checked;
-  $("endText").disabled = $("toEnd").checked;
+  if (!messages.length) {
+    return;
+  }
 
-  const startResult = boundaryStatus(
-    $("startText").value,
-    true,
-    $("fromBeginning").checked
-  );
 
-  const endResult = boundaryStatus(
-    $("endText").value,
-    false,
-    $("toEnd").checked
-  );
+  $("startText").disabled =
+    $("fromBeginning").checked;
 
-  const status = $("matchStatus");
-  const counts = $("counts");
-  const preview = $("preview");
-  const button = $("make");
+  $("endText").disabled =
+    $("toEnd").checked;
+
+
+  const startResult =
+    boundaryStatus(
+      $("startText").value,
+      true,
+      $("fromBeginning").checked
+    );
+
+
+  const endResult =
+    boundaryStatus(
+      $("endText").value,
+      false,
+      $("toEnd").checked
+    );
+
+
+  const status =
+    $("matchStatus");
+
+  const counts =
+    $("counts");
+
+  const preview =
+    $("preview");
+
+  const button =
+    $("make");
+
 
   selected = null;
+
   button.disabled = true;
-  status.className = "status error";
+
+  status.className =
+    "status error";
+
   counts.innerHTML = "";
+
   preview.innerHTML = "";
 
+
   if (startResult.error) {
-    status.textContent = "Inicio: " + startResult.error;
+
+    status.textContent =
+      "Inicio: " +
+      startResult.error;
+
     return;
+
   }
+
 
   if (endResult.error) {
-    status.textContent = "Final: " + endResult.error;
+
+    status.textContent =
+      "Final: " +
+      endResult.error;
+
     return;
+
   }
 
-  const start = startResult.index;
-  const end = endResult.index;
+
+  const start =
+    startResult.index;
+
+  const end =
+    endResult.index;
+
 
   if (start > end) {
+
     status.textContent =
       "El mensaje inicial está después del final. Revisa los mensajes que pegaste.";
+
     return;
+
   }
 
-  selected = { start, end };
 
-  const total = end - start + 1;
+  selected = {
+    start,
+    end
+  };
+
+
+  const total =
+    end - start + 1;
+
+
+  /*
+    Contar multimedia del fragmento.
+  */
+
+  const selectedMessages =
+    messages.slice(start, end + 1);
+
+
+  const referencedMedia =
+    new Set();
+
+
+  for (const message of selectedMessages) {
+
+    for (
+      const path
+      of messageMedia(message)
+    ) {
+
+      referencedMedia.add(path);
+
+    }
+
+  }
+
 
   counts.innerHTML =
+
     `<span class="pill">Mensajes totales: ${messages.length}</span>` +
+
     `<span class="pill">Fragmento: ${total} mensajes</span>` +
+
     `<span class="pill">Inicio: ${start + 1}</span>` +
-    `<span class="pill">Final: ${end + 1}</span>`;
 
-  const first = messages[start];
-  const last = messages[end];
+    `<span class="pill">Final: ${end + 1}</span>` +
 
-  // Mostrar ambos extremos, incluso si el rango es muy largo.
-  const indexes = [];
-  for (let i = start; i <= Math.min(end, start + 3); i++) {
-    indexes.push(i);
-  }
+    `<span class="pill">Multimedia relacionado: ${referencedMedia.size}</span>`;
 
-  if (end - start > 4) {
-    indexes.push(-1);
-  }
 
-  for (let i = Math.max(start + 4, end - 3); i <= end; i++) {
-    if (i >= start && !indexes.includes(i)) indexes.push(i);
-  }
+  /*
+    Mostrar TODOS los mensajes.
 
-  preview.innerHTML = indexes.map(i => {
-    if (i === -1) {
-      return `<div class="message">… ${total - 8} mensajes intermedios …</div>`;
-    }
+    Este era uno de los problemas principales
+    de la versión anterior.
+  */
 
-    return `<div class="message">
-      <span class="number">Mensaje ${i + 1}${i === start ? " · INICIO" : i === end ? " · FINAL" : ""}</span>
-      ${escapeHTML(messages[i].text)}
-    </div>`;
-  }).join("");
+  preview.innerHTML =
+    selectedMessages.map(
+      (message, localIndex) => {
 
-  status.className = "status success";
+        const originalIndex =
+          start + localIndex;
+
+        const media =
+          messageMedia(message);
+
+
+        const mediaLabel =
+          media.length
+            ? `<div class="media-label">
+                 📎 ${media.length} archivo(s): ${media.map(
+                   p => escapeHTML(p.split("/").pop())
+                 ).join(", ")}
+               </div>`
+            : "";
+
+
+        return `
+
+          <div class="message ${media.length ? "message-media" : ""}">
+
+            <span class="number">
+
+              Mensaje ${originalIndex + 1}
+
+              ${
+                originalIndex === start
+                  ? " · INICIO"
+                  : originalIndex === end
+                    ? " · FINAL"
+                    : ""
+              }
+
+              ${
+                message.sender
+                  ? " · " + escapeHTML(message.sender)
+                  : ""
+              }
+
+            </span>
+
+            ${escapeHTML(message.text)}
+
+            ${mediaLabel}
+
+          </div>
+
+        `;
+
+      }
+    ).join("");
+
+
+  status.className =
+    "status success";
+
+
   status.textContent =
-    "Ambos mensajes se identificaron de forma única. Revisa la vista previa antes de exportar.";
+    `Rango válido. Se muestran los ${total} mensajes completos del fragmento. Los pies de foto se conservan como parte del mensaje.`;
+
 
   button.disabled = false;
+
+
+  updateMediaSummary();
+
 }
 
-$("fromBeginning").addEventListener("change", update);
-$("toEnd").addEventListener("change", update);
-$("startText").addEventListener("input", update);
-$("endText").addEventListener("input", update);
 
-$("file").addEventListener("change", async () => {
-  $("rangeCard").classList.add("hidden");
-  $("previewCard").classList.add("hidden");
-  $("exportCard").classList.add("hidden");
-  $("fileInfo").textContent = "";
-  $("status").textContent = "";
-  zip = null;
-  messages = [];
-  selected = null;
+/* ============================================================
+   RESUMEN MULTIMEDIA
+============================================================ */
 
-  const file = $("file").files[0];
-  if (!file) return;
+function updateMediaSummary() {
 
-  try {
-    if (!window.JSZip) {
-      throw Error("No se pudo cargar la librería ZIP. Comprueba tu conexión.");
+  if (!mediaFiles.length) {
+
+    $("mediaSummary").textContent =
+      "No se detectaron archivos multimedia en el ZIP.";
+
+    return;
+
+  }
+
+
+  let images = 0;
+  let audio = 0;
+  let video = 0;
+  let documents = 0;
+  let other = 0;
+
+
+  for (const path of mediaFiles) {
+
+    const type =
+      mediaType(path);
+
+
+    if (type === "imagen") {
+      images++;
     }
 
-    $("fileInfo").textContent = "Leyendo archivo…";
-    zip = await JSZip.loadAsync(file);
-
-    archiveFiles = Object.keys(zip.files)
-      .filter(path => !zip.files[path].dir);
-
-    const txtFiles = archiveFiles.filter(path =>
-      /\.txt$/i.test(path) &&
-      !/(^|\/)__MACOSX\//i.test(path)
-    );
-
-    if (!txtFiles.length) {
-      throw Error("No se encontró ningún archivo TXT en el ZIP.");
+    else if (type === "audio") {
+      audio++;
     }
 
-    txtPath =
-      txtFiles.find(path => /WhatsApp Chat/i.test(path)) ||
-      txtFiles[0];
-
-    const text = await zip.file(txtPath).async("string");
-    messages = parseChat(text);
-
-    if (!messages.length) {
-      throw Error("No se pudieron detectar mensajes en el TXT.");
+    else if (type === "vídeo") {
+      video++;
     }
 
-    chatName = txtPath.split("/").pop()
-      .replace(/\.txt$/i, "")
-      .replace(/[\\/:*?"<>|]/g, "_") || "conversacion";
+    else if (type === "documento") {
+      documents++;
+    }
 
-    $("fileInfo").textContent =
-      `${file.name} · ${messages.length} mensajes detectados`;
+    else {
+      other++;
+    }
 
-    $("startText").value = "";
-    $("endText").value = "";
-    $("fromBeginning").checked = false;
-    $("toEnd").checked = false;
+  }
 
-    $("rangeCard").classList.remove("hidden");
-    $("previewCard").classList.remove("hidden");
-    $("exportCard").classList.remove("hidden");
 
-    update();
+  const parts = [];
 
-  } catch (error) {
+
+  if (images) {
+    parts.push(`${images} imágenes`);
+  }
+
+  if (audio) {
+    parts.push(`${audio} audios`);
+  }
+
+  if (video) {
+    parts.push(`${video} vídeos`);
+  }
+
+  if (documents) {
+    parts.push(`${documents} documentos`);
+  }
+
+  if (other) {
+    parts.push(`${other} archivos`);
+  }
+
+
+  $("mediaSummary").textContent =
+    `El ZIP original contiene ${mediaFiles.length} archivos multimedia: ${parts.join(", ")}.`;
+
+}
+
+
+/* ============================================================
+   INPUTS
+============================================================ */
+
+$("fromBeginning")
+  .addEventListener(
+    "change",
+    update
+  );
+
+
+$("toEnd")
+  .addEventListener(
+    "change",
+    update
+  );
+
+
+$("startText")
+  .addEventListener(
+    "input",
+    update
+  );
+
+
+$("endText")
+  .addEventListener(
+    "input",
+    update
+  );
+
+
+$("includeAllMedia")
+  .addEventListener(
+    "change",
+    update
+  );
+
+
+/* ============================================================
+   CARGAR ZIP
+============================================================ */
+
+$("file").addEventListener(
+  "change",
+  async () => {
+
+    $("rangeCard")
+      .classList.add("hidden");
+
+    $("previewCard")
+      .classList.add("hidden");
+
+    $("exportCard")
+      .classList.add("hidden");
+
+
+    $("fileInfo").textContent = "";
+
+    $("status").textContent = "";
+
+    $("matchStatus").textContent = "";
+
+
     zip = null;
-    $("fileInfo").textContent = "Error: " + error.message;
-  }
-});
 
-$("make").addEventListener("click", async () => {
-  const button = $("make");
+    messages = [];
 
-  try {
-    // Recalcular el rango antes de exportar.
-    update();
+    archiveFiles = [];
 
-    if (!zip || !selected) {
-      throw Error("No hay un fragmento válido seleccionado.");
+    mediaFiles = [];
+
+    selected = null;
+
+
+    const file =
+      $("file").files[0];
+
+
+    if (!file) {
+      return;
     }
 
-    button.disabled = true;
-    $("status").textContent = "Preparando conversación…";
 
-    const { start, end } = selected;
-    const chosen = messages.slice(start, end + 1);
-    const output = new JSZip();
+    try {
 
-    output.file(
-      txtPath,
-      chosen.map(message => message.text).join("\n") + "\n"
-    );
+      if (!window.JSZip) {
 
-    // Buscar nombres de adjuntos mencionados en los mensajes.
-    const media = archiveFiles.filter(path =>
-      path !== txtPath &&
-      !/\.txt$/i.test(path) &&
-      !/(^|\/)__MACOSX\//i.test(path)
-    );
+        throw new Error(
+          "No se pudo cargar la librería ZIP. Comprueba tu conexión a Internet."
+        );
 
-    const byName = new Map();
+      }
 
-    for (const path of media) {
-      const name = path.split("/").pop().toLowerCase();
-      if (!name) continue;
 
-      if (!byName.has(name)) byName.set(name, []);
-      byName.get(name).push(path);
-    }
+      $("fileInfo").textContent =
+        "Leyendo ZIP…";
 
-    const referenced = new Set();
-    const extensions =
-      /\.(jpe?g|png|gif|webp|heic|mp4|mov|avi|3gp|m4a|mp3|opus|ogg|wav|pdf|docx?|xlsx?|pptx?|vcf|zip)$/i;
 
-    for (const message of chosen) {
-      const text = message.text.toLowerCase();
+      zip =
+        await JSZip.loadAsync(file);
 
-      for (const [name, paths] of byName) {
-        if (extensions.test(name) && text.includes(name)) {
-          paths.forEach(path => referenced.add(path));
+
+      /*
+        Obtener todos los archivos reales.
+      */
+
+      archiveFiles =
+        Object.keys(zip.files)
+          .filter(
+            path =>
+              !zip.files[path].dir
+          )
+          .filter(
+            path =>
+              !/(^|\/)__MACOSX\//i.test(path)
+          );
+
+
+      /*
+        Buscar todos los TXT.
+
+        No dependemos solamente de "WhatsApp Chat".
+      */
+
+      const txtFiles =
+        archiveFiles.filter(
+          path =>
+            /\.txt$/i.test(path)
+        );
+
+
+      if (!txtFiles.length) {
+
+        throw new Error(
+          "No se encontró ningún archivo TXT dentro del ZIP."
+        );
+
+      }
+
+
+      /*
+        WhatsApp suele usar _chat.txt en iPhone
+        o el nombre del chat en Android.
+
+        Si hay varios TXT, escogemos el más grande.
+      */
+
+      let bestTxt = null;
+
+      let bestSize = -1;
+
+
+      for (const path of txtFiles) {
+
+        const entry =
+          zip.file(path);
+
+        if (!entry) continue;
+
+
+        /*
+          No necesitamos extraer el archivo completo
+          para decidir por tamaño cuando JSZip
+          proporciona _data.compressedSize.
+
+          Si no está disponible, se utiliza una
+          puntuación por nombre.
+        */
+
+        let size = 0;
+
+
+        if (
+          entry._data &&
+          typeof entry._data.uncompressedSize === "number"
+        ) {
+
+          size =
+            entry._data.uncompressedSize;
+
         }
+
+
+        const score =
+          /_chat\.txt$/i.test(path)
+            ? 1000000000
+            : /whatsapp|chat/i.test(path)
+              ? 500000000
+              : 0;
+
+
+        const finalScore =
+          score + size;
+
+
+        if (finalScore > bestSize) {
+
+          bestSize =
+            finalScore;
+
+          bestTxt =
+            path;
+
+        }
+
       }
+
+
+      txtPath =
+        bestTxt || txtFiles[0];
+
+
+      const text =
+        await zip
+          .file(txtPath)
+          .async("string");
+
+
+      messages =
+        parseChat(text);
+
+
+      if (!messages.length) {
+
+        throw new Error(
+          "No se pudieron detectar mensajes en el TXT."
+        );
+
+      }
+
+
+      /*
+        Detectar multimedia.
+
+        No dependemos del TXT para saber qué archivos
+        existen realmente.
+      */
+
+      mediaFiles =
+        archiveFiles.filter(
+          path =>
+            path !== txtPath &&
+            isMediaOrAttachment(path)
+        );
+
+
+      /*
+        Nombre base del chat.
+      */
+
+      chatName =
+        txtPath
+          .split("/")
+          .pop()
+          .replace(
+            /\.txt$/i,
+            ""
+          )
+          .replace(
+            /[\\/:*?"<>|]/g,
+            "_"
+          ) ||
+        "conversacion";
+
+
+      $("fileInfo").innerHTML =
+
+        `<span class="pill">
+          ${escapeHTML(file.name)}
+        </span>` +
+
+        `<span class="pill">
+          ${messages.length} mensajes detectados
+        </span>` +
+
+        `<span class="pill">
+          ${mediaFiles.length} archivos multimedia
+        </span>`;
+
+
+      $("startText").value = "";
+
+      $("endText").value = "";
+
+      $("fromBeginning").checked =
+        false;
+
+      $("toEnd").checked =
+        false;
+
+
+      $("rangeCard")
+        .classList.remove("hidden");
+
+      $("previewCard")
+        .classList.remove("hidden");
+
+      $("exportCard")
+        .classList.remove("hidden");
+
+
+      update();
+
     }
 
-    $("status").textContent =
-      `Copiando ${referenced.size} archivo(s) multimedia…`;
+    catch (error) {
 
-    for (const path of referenced) {
-      const entry = zip.file(path);
-      if (entry) {
-        output.file(path, await entry.async("uint8array"));
-      }
+      zip = null;
+
+      messages = [];
+
+      mediaFiles = [];
+
+
+      $("fileInfo").innerHTML =
+        `<span class="error">
+          Error: ${escapeHTML(error.message)}
+        </span>`;
+
     }
 
-    $("status").textContent = "Generando ZIP…";
-
-    const blob = await output.generateAsync({
-      type: "blob",
-      compression: "DEFLATE",
-      compressionOptions: { level: 4 }
-    });
-
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-
-    link.href = url;
-    link.download =
-      `${chatName}_fragmento_${start + 1}-${end + 1}.zip`;
-    link.style.display = "none";
-
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-
-    setTimeout(() => URL.revokeObjectURL(url), 60000);
-
-    $("status").textContent =
-      `¡Listo! ${chosen.length} mensajes y ${referenced.size} archivos multimedia identificados. Revisa tus descargas.`;
-
-  } catch (error) {
-    $("status").textContent = "Error: " + error.message;
-  } finally {
-    button.disabled = !selected;
   }
-});
+);
+
+
+/* ============================================================
+   EXPORTAR
+============================================================ */
+
+$("make").addEventListener(
+  "click",
+  async () => {
+
+    const button =
+      $("make");
+
+
+    try {
+
+      /*
+        Recalcular antes de exportar.
+      */
+
+      update();
+
+
+      if (!zip || !selected) {
+
+        throw new Error(
+          "No hay un fragmento válido seleccionado."
+        );
+
+      }
+
+
+      button.disabled = true;
+
+
+      $("progress")
+        .classList.remove("hidden");
+
+
+      $("progressBar")
+        .style.width = "0%";
+
+
+      $("status").textContent =
+        "Preparando conversación…";
+
+
+      const {
+        start,
+        end
+      } = selected;
+
+
+      const chosen =
+        messages.slice(
+          start,
+          end + 1
+        );
+
+
+      const output =
+        new JSZip();
+
+
+      /*
+        ======================================================
+        TXT
+        ======================================================
+      */
+
+
+      /*
+        MUY IMPORTANTE:
+
+        Se conserva el texto EXACTAMENTE como fue
+        reconstruido por el parser, incluidos:
+
+        - pies de foto
+        - mensajes multilínea
+        - saltos de línea
+        - emojis
+        - texto después de adjuntos
+      */
+
+      const selectedText =
+        chosen
+          .map(
+            message =>
+              message.text
+          )
+          .join("\n") +
+        "\n";
+
+
+      output.file(
+        txtPath,
+        selectedText
+      );
+
+
+      $("progressBar")
+        .style.width = "15%";
+
+
+      /*
+        ======================================================
+        MULTIMEDIA
+        ======================================================
+      */
+
+
+      let filesToCopy = [];
+
+
+      /*
+        OPCIÓN SEGURA:
+
+        Incluir absolutamente todos los archivos
+        multimedia del ZIP original.
+
+        Esto evita perder imágenes/audios cuando WhatsApp
+        ha utilizado una referencia que no coincide
+        exactamente con el nombre del archivo.
+      */
+
+      if (
+        $("includeAllMedia").checked
+      ) {
+
+        filesToCopy =
+          [...mediaFiles];
+
+      }
+
+      else {
+
+        /*
+          Solo multimedia que aparece relacionado
+          directamente con los mensajes seleccionados.
+        */
+
+        const referenced =
+          new Set();
+
+
+        for (
+          const message
+          of chosen
+        ) {
+
+          const refs =
+            messageMedia(
+              message
+            );
+
+
+          for (
+            const path
+            of refs
+          ) {
+
+            referenced.add(
+              path
+            );
+
+          }
+
+        }
+
+
+        filesToCopy =
+          [...referenced];
+
+      }
+
+
+      $("status").textContent =
+        `Copiando ${filesToCopy.length} archivo(s) multimedia…`;
+
+
+      /*
+        Copiar archivos uno por uno.
+
+        uint8array conserva el contenido binario,
+        por lo que no se dañan JPG, PNG, OPUS, MP3,
+        M4A, MP4, etc.
+      */
+
+      for (
+        let i = 0;
+        i < filesToCopy.length;
+        i++
+      ) {
+
+        const path =
+          filesToCopy[i];
+
+
+        const entry =
+          zip.file(path);
+
+
+        if (!entry) {
+          continue;
+        }
+
+
+        const data =
+          await entry.async(
+            "uint8array"
+          );
+
+
+        output.file(
+          path,
+          data
+        );
+
+
+        const percent =
+          15 +
+          (
+            (i + 1) /
+            Math.max(
+              1,
+              filesToCopy.length
+            )
+          ) * 70;
+
+
+        $("progressBar")
+          .style.width =
+          percent + "%";
+
+      }
+
+
+      /*
+        ======================================================
+        INFORMACIÓN
+        ======================================================
+      */
+
+      const info = [
+
+        "Exportación creada con el recortador de WhatsApp.",
+
+        `Mensajes incluidos: ${chosen.length}`,
+
+        `Mensaje inicial: ${start + 1}`,
+
+        `Mensaje final: ${end + 1}`,
+
+        `Archivos multimedia incluidos: ${filesToCopy.length}`,
+
+        "",
+
+        "El TXT conserva los mensajes y pies de foto del rango seleccionado."
+
+      ].join("\n");
+
+
+      output.file(
+        "INFO_EXPORTACION.txt",
+        info
+      );
+
+
+      $("progressBar")
+        .style.width = "90%";
+
+
+      /*
+        ======================================================
+        GENERAR ZIP
+        ======================================================
+      */
+
+      $("status").textContent =
+        "Generando ZIP final…";
+
+
+      const blob =
+        await output.generateAsync(
+          {
+            type: "blob",
+
+            compression: "DEFLATE",
+
+            compressionOptions: {
+              level: 4
+            }
+
+          },
+          metadata => {
+
+            const percent =
+              90 +
+              (
+                metadata.percent / 100
+              ) * 10;
+
+
+            $("progressBar")
+              .style.width =
+              percent + "%";
+
+          }
+        );
+
+
+      /*
+        ======================================================
+        DESCARGA
+        ======================================================
+      */
+
+      const url =
+        URL.createObjectURL(
+          blob
+        );
+
+
+      const link =
+        document.createElement(
+          "a"
+        );
+
+
+      link.href =
+        url;
+
+
+      link.download =
+        `${chatName}_fragmento_${start + 1}-${end + 1}.zip`;
+
+
+      link.style.display =
+        "none";
+
+
+      document.body.appendChild(
+        link
+      );
+
+
+      link.click();
+
+
+      link.remove();
+
+
+      setTimeout(
+        () =>
+          URL.revokeObjectURL(
+            url
+          ),
+        60000
+      );
+
+
+      $("progressBar")
+        .style.width =
+        "100%";
+
+
+      $("status").className =
+        "status success";
+
+
+      $("status").textContent =
+
+        `¡Exportación terminada!
+
+${chosen.length} mensajes incluidos.
+${filesToCopy.length} archivos multimedia incluidos.
+
+Los pies de foto se conservaron dentro del TXT.
+
+El ZIP ya fue enviado a tus descargas.`;
+
+
+    }
+
+    catch (error) {
+
+      $("status").className =
+        "status error";
+
+
+      $("status").textContent =
+        "Error durante la exportación: " +
+        error.message;
+
+    }
+
+    finally {
+
+      button.disabled =
+        !selected;
+
+    }
+
+  }
+);
+
 })();
 </script>
+
 </body>
 </html>
